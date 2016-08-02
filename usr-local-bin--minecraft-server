@@ -1,0 +1,14 @@
+cd  /home/minecraft
+version=${1:-1.8.8}
+if test -s /home/minecraft/spigot-jars/spigot-${version}.jar
+then
+  echo "=====FOUND  spigot-${version}, LOADING======" 
+  sudo /opt/jdk1.8.0_60/bin/java -Xms512M -Xmx1008M -jar /home/minecraft/spigot-jars/spigot-${version}.jar nogui
+else
+  echo "=====NOT-FOUND, SO DOWNLOADING spigot-${version}"
+  cd spigot-jars
+  sudo wget  http://www.mediafire.com/download/kvkkxsu7ws6nhvz/spigot-${version}.jar
+  cd ..
+  echo "=====LOADING spigot-${version}"
+  sudo /opt/jdk1.8.0_60/bin/java -Xms512M -Xmx1008M -jar /home/minecraft/spigot-jars/spigot-${version}.jar nogui
+fi
